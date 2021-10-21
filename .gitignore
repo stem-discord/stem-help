@@ -2,6 +2,9 @@
 node_modules
 /dist
 
+# Dev files
+?.*
+*.temp.*
 
 # local env files
 .env.local
