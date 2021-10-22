@@ -9,6 +9,12 @@ module.exports = {
   parserOptions: {
     parser: `babel-eslint`,
   },
+  globals: {
+    defineProps: `readonly`,
+    defineEmits: `readonly`,
+    defineExpose: `readonly`,
+    withDefaults: `readonly`,
+  },
   rules: {
     "no-console": process.env.NODE_ENV === `production` ? `warn` : `off`,
     "no-debugger": process.env.NODE_ENV === `production` ? `warn` : `off`,
@@ -17,7 +23,7 @@ module.exports = {
     "consistent-return": `off`,
     "jest/expect-expect": `off`,
     "security/detect-object-injection": `off`,
-
+    "no-unused-vars": `off`,
     "linebreak-style": [`error`, `unix`],
     semi: [`error`, `always`],
     quotes: [`error`, `backtick`],
