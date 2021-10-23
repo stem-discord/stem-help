@@ -1,12 +1,40 @@
 <template>
+  <CookieAccept
+    position="bottom-right"
+    transitionName="fade"
+    showPostponeButton="true"
+    @clicked-accept="cookieAccepted"
+  />
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">
+      <Logo text="STEM" />
+    </router-link>
+    <!-- later add ways to check for mobile or not -->
+    <div class="menu">
+      <router-link to="/about">About</router-link>
+      <router-link to="/contact">Contact</router-link>
+    </div>
+    <div class="login">
+      <router-link to="/login">Login</router-link>
+    </div>
+    <!-- <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link> -->
   </div>
+  <div id="popup" :if="popup != null" />
   <router-view />
 </template>
 
+<script setup>
+import Logo from "./components/Logo.vue";
+import CookieAccept from "./absolute/CookieAccept.vue";
+function cookieAccepted() {
+  console.log(`cookie accepted`);
+}
+</script>
+
 <style lang="scss">
+@use "style.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,7 +44,21 @@
 }
 
 #nav {
-  padding: 30px;
+  grid-template-areas: "logo menu login";
+  line-height: 2.3rem;
+  font-size: 2.3rem;
+  padding: 0 5px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto 1fr auto;
+  // z-index: 2;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+
+  padding: 10px 20px 10px 20px;
+
+  border-bottom: 1px solid #e0e0e0;
 
   a {
     font-weight: bold;
@@ -25,6 +67,22 @@
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+
+  .logo {
+    grid-area: logo;
+  }
+
+  .menu {
+    grid-area: menu;
+    align-items: center;
+    a {
+      margin: 0.5rem;
+    }
+  }
+
+  .login {
+    grid-area: login;
   }
 }
 </style>
