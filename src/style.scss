@@ -29,6 +29,20 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
 }
 
+* {
+  @apply select-none;
+}
+
+::-moz-selection {
+  color: var(--bg-color);
+  background: var(--caret-color);
+}
+
 ::selection {
-  color: var(--caret-color)
+  color: var(--bg-color);
+  background: var(--caret-color);
+}
+
+* {
+
 }
