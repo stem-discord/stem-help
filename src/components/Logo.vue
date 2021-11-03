@@ -18,7 +18,7 @@ defineProps({
   p {
     color: var(--main-color);
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 900;
     text-align: center;
     // enable anti aliasing
     -webkit-font-smoothing: antialiased;

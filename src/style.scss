@@ -1,13 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bg-color: #eeebe2;
   --main-color: #080909;
-  --caret-color: #7fa480;
-  --sub-color: #99947f;
+  --caret-color: #644081;
+  --sub-color: #a15caf;
   --text-color: #080909;
-  --error-color: #c87e74;
-  --colorful-error-color: #a56961;
-  --colorful-error-color: #c87e74;
-  --colorful-error-extra-color: #a56961;
+  --error-color: #e98449;
+  --colorful-error-color: #ee0d2b;
+  --colorful-error-extra-color: #ff1c73;
 }
 
 html, body {
@@ -20,4 +23,12 @@ input, button, submit { border:none; }
 a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: inherit;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+}
+
+::selection {
+  color: var(--caret-color)
 }

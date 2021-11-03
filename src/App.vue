@@ -36,11 +36,12 @@ function cookieAccepted() {
 @use "style.scss";
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  font-weight: light;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--main-color);
 }
 
 #nav {
@@ -58,14 +59,14 @@ function cookieAccepted() {
 
   padding: 10px 20px 10px 20px;
 
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--bg-color);
 
   a {
-    font-weight: bold;
-    color: #2c3e50;
+    font-weight: light;
+    color: var(--main-color);
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: var(--sub-color);
     }
   }
 

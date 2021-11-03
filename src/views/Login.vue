@@ -1,5 +1,5 @@
 <template>
-  <h1>Login using Discord</h1>
+  <h1 class="select-none">Login using Discord</h1>
   <button @click="discordLogin">discord login</button>
 </template>
 
