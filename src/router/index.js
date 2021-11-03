@@ -23,6 +23,11 @@ const routes = [
     component: () => import(`../views/potd/Submit.vue`),
   },
   {
+    path: `/contact`,
+    name: `contact page`,
+    component: () => import(`../views/Contact.vue`),
+  },
+  {
     path: `/about`,
     name: `About`,
     // route level code-splitting
