@@ -47,7 +47,7 @@ function cookieAccepted() {
 #nav {
   grid-template-areas: "logo menu login";
   line-height: 2.3rem;
-  font-size: 2.3rem;
+  font-size: 1.5rem;
   padding: 0 5px;
   display: grid;
   grid-auto-flow: column;
@@ -60,6 +60,8 @@ function cookieAccepted() {
   padding: 10px 20px 10px 20px;
 
   border-bottom: 1px solid var(--bg-color);
+
+  text-transform: uppercase;
 
   a {
     font-weight: light;
