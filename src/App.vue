@@ -13,6 +13,7 @@
     <div class="menu">
       <router-link to="/about">About</router-link>
       <router-link to="/contact">Contact</router-link>
+      <router-link to="/leaderboards">Leaderboards</router-link>
     </div>
     <div class="login">
       <router-link to="/login">Login</router-link>
@@ -20,8 +21,9 @@
     <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
   </div>
+  <!-- this popup is absolute -->
   <div id="popup" :if="popup != null" />
-  <router-view />
+  <router-view class="h-full w-full" />
 </template>
 
 <script setup>
@@ -42,6 +44,9 @@ function cookieAccepted() {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: var(--main-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 #nav {
