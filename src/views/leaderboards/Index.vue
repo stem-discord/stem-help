@@ -7,8 +7,8 @@
           <li
             v-for="user in users"
             :key="user.id"
-            class="flex col-start-auto my-3 ml-2 text-white p-10 rounded-md"
-            style="background-color: #1d222e"
+            class="flex col-start-auto my-3 ml-10 text-white p-5"
+            style="border-radius: 9999px 0 0 9999px; background-color: #1d222e"
           >
             <p>{{ user.username }}</p>
             <p class="ml-auto right-0">{{ user.score }}</p>
