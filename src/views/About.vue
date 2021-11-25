@@ -3,10 +3,9 @@ export default {
   setup() {
     return () => (
       <div class="test">
-        <p>
-          You are probably wondering why this doesn't even have proper stuff.
-          Well, this website is on development :dance:
-        </p>
+        <h1 style="font-size: 100px">
+          Prak has 3 eggs in his brain, where 2 of them are spoiled
+        </h1>
       </div>
     );
   },
