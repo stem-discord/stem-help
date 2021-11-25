@@ -3,8 +3,13 @@
     <div class="h-full w-full">
       <Loading v-if="loading" class="m-auto" />
       <ul v-else class="overflow-hidden">
-        <div class="m-4">
-          <li v-for="user in users" :key="user.id" class="flex col-start-auto">
+        <div>
+          <li
+            v-for="user in users"
+            :key="user.id"
+            class="flex col-start-auto my-3 ml-2 text-white p-10 rounded-md"
+            style="background-color: #1d222e"
+          >
             <p>{{ user.username }}</p>
             <p class="ml-auto right-0">{{ user.score }}</p>
           </li>
