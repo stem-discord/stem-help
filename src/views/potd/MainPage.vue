@@ -1,3 +1,14 @@
 <template>
-  <h1>potd main page</h1>
+  <p>ers</p>
+  <potd />
 </template>
+
+<script>
+import Potd from "./Potd.jsx";
+
+export default {
+  components: {
+    potd: Potd,
+  },
+};
+</script>
