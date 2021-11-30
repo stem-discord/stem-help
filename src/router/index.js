@@ -13,14 +13,9 @@ const routes = [
     component: () => import(`../views/Login.vue`),
   },
   {
-    path: `/potd`,
+    path: `/potd/:path(.*)`,
     name: `potd main page`,
     component: () => import(`../views/potd/MainPage.vue`),
-  },
-  {
-    path: `/potd/submit`,
-    name: `potd submit page`,
-    component: () => import(`../views/potd/Submit.vue`),
   },
   {
     path: `/contact`,
@@ -44,6 +39,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ `../views/leaderboards/Index.vue`),
+  },
+  {
+    path: `/:catchAll(.*)`,
+    name: `404`,
+    component: () => import(`../views/404.vue`),
   },
 ];
 
