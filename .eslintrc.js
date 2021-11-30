@@ -32,6 +32,8 @@ module.exports = {
     strict: 0,
     "comma-dangle": [`error`, `always-multiline`],
     "space-infix-ops": [`error`, { int32Hint: false }],
+    "vue/multi-word-component-names": `off`,
+    "vue/no-unused-components": `off`,
   },
   overrides: [
     {
