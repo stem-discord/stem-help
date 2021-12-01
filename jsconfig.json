@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "@/*": ["./src/*"],
+    "#*": ["./src/component/*"]
+  }
+}

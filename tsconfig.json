@@ -9,5 +9,8 @@
   "compilerOptions": {
     "jsx": "preserve",
     "module": "es2020",
+  },
+  "paths": {
+    "#": ["src/components"]
   }
 }
