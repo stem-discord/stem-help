@@ -47,18 +47,9 @@ import HeightRatio from "#/HeightRatio.vue";
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  transition: 0.4s;
+.cta {
   margin-left: 10px;
   cursor: pointer;
-}
-
-.wrapper:hover {
-  transition: 0.4s;
-  margin-left: 0;
-}
-
-.cta {
   display: flex;
   padding-left: 10px;
   padding-top: 10px;
@@ -71,11 +62,10 @@ import HeightRatio from "#/HeightRatio.vue";
   font-smooth: always;
   color: white;
   background: #6225e6;
-  transition: 1s;
   box-shadow: 6px 6px 0 black;
   transform: skewX(-15deg);
-  transition: box-shadow 0.5s;
-  transition: padding-right 0.3s ease-out, box-shadow 0.5s;
+  transition: padding-right 0.3s ease-out, box-shadow 0.5s,
+    margin-left 0.3s ease-out;
 }
 
 .cta:focus {
@@ -83,7 +73,9 @@ import HeightRatio from "#/HeightRatio.vue";
 }
 
 .cta:hover {
-  transition: padding-right 0.3s ease-out, box-shadow 0.5s;
+  margin-left: 0px;
+  transition: padding-right 0.3s ease-out, box-shadow 0.5s,
+    margin-left 0.3s ease-out;
   padding-right: 30px;
   box-shadow: 10px 10px 0 #fbc638;
 }
