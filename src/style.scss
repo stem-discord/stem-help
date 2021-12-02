@@ -26,7 +26,11 @@ input, button, submit { border:none; }
 
 a, a:hover, a:focus, a:active {
     text-decoration: none;
-    color: inherit;
+    color: var(--caret-color);
+}
+
+a:hover {
+    color: var(--main-color);
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -82,3 +86,76 @@ li:not(:last-child) {
   background: var(--caret-color);
 }
 
+
+  .markdown-body h1 strong{
+    color: var(--main-alpha);
+  }
+  .markdown-body h1{
+    padding-bottom: 5rem;
+  }
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+    padding: 45px 0;
+    blockquote{
+      margin-top: 2rem;
+      background-color: rgba(0,0,0,0.05);
+      padding: 0.6rem 1rem;
+      border-left: solid 2px #6c6c6c;
+      padding-left: 1rem;
+    }
+    h2{
+      border-bottom: solid 1px #a0a0a0;
+      padding-bottom: 1rem;
+      margin-bottom: 3.2rem;
+    }
+	}
+  .markdown-body ul:first-of-type{
+    padding: 2rem;
+    list-style: none;
+    li a{
+      transition: all 0.2s ease;
+    }
+    li a:hover{
+      color: var(--main-alpha);
+    }
+  }
+
+  .markdown-body details ul:first-of-type{
+    list-style: initial !important;
+  }
+
+  .markdown-body ul{
+    list-style-type: initial;
+    padding-left: 3rem;
+  }
+
+
+  details{
+    padding: 0.2rem 6rem;
+  }
+  details summary{
+    margin: 0.2rem -6rem;
+    padding: 0.2rem 2rem;
+  }
+  details ul{
+    padding: 2rem 3rem !important;
+  }
+  details ol{
+    padding-left: 3rem;
+  }
+  details ol ol{
+    font-size: 1.4rem;
+  }
+  @media (max-width: 767px) {
+		.markdown-body {
+      padding: 15px;
+		}
+  }
+	@media (max-width: 1080px) {
+		.markdown-body {
+      padding: 20px;
+		}
+  }
