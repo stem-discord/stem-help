@@ -42,7 +42,6 @@ function cookieAccepted() {
   font-weight: light;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: var(--main-color);
   display: flex;
   flex-direction: column;
