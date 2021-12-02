@@ -17,7 +17,7 @@ if you followed this step, you should have `npm` installed as well
 Now open the command line in the project directory
 
 ```sh
-npm install
+npm ci
 npm run serve
 ````
 
