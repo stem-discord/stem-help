@@ -4,7 +4,7 @@
       <div style="transform: skewX(10deg); margin-right: 10px">
         <slot />
       </div>
-      <HeightRatio ratio="0.8">
+      <HeightRatio :ratio="0.8">
         <svg
           height="100%"
           width="100%"

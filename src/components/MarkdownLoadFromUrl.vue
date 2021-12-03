@@ -1,5 +1,5 @@
 <template>
-  <MD :text="content" />
+  <MD :text="this.content" />
 </template>
 
 <script setup>
