@@ -1,5 +1,6 @@
 <template>
-  <MD :text="content" />
+  <div>{{ content }}</div>
+  <MD :text="number.toString()" />
 </template>
 
 <script>
@@ -9,8 +10,15 @@ import { ref } from "vue";
 export default {
   setup() {
     const content = ref(`loading`);
+    const number = ref(0);
+
+    setInterval(() => {
+      number.value++;
+    }, 1000);
+
     return {
       content,
+      number,
     };
   },
   created() {
