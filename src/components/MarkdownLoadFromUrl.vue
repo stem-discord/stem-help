@@ -1,16 +1,18 @@
 <template>
-  <MD :text="this.content" />
+  <MD :text="content" />
 </template>
 
-<script setup>
-import MD from "#/MarkdownRender.vue";
-const content = ref(`loading`);
-</script>
-
 <script>
+import MD from "#/MarkdownRender.vue";
 import { ref } from "vue";
 
 export default {
+  setup() {
+    const content = ref(`loading`);
+    return {
+      content,
+    };
+  },
   created() {
     fetch(this.url)
       .then((res) => res.text())
@@ -26,6 +28,9 @@ export default {
       type: String,
       required: true,
     },
+  },
+  components: {
+    MD,
   },
 };
 </script>
