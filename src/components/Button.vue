@@ -65,7 +65,8 @@ import HeightRatio from "#/HeightRatio.vue";
   box-shadow: 6px 6px 0 black;
   transform: skewX(-15deg);
   transition: padding-right 0.3s ease-out, box-shadow 0.5s,
-    margin-left 0.3s ease-out;
+    margin-left 0.3s ease-out, margin-top 0.1s ease-out,
+    margin-bottom 0.1s ease-out;
 }
 
 .cta:focus {
@@ -73,13 +74,19 @@ import HeightRatio from "#/HeightRatio.vue";
 }
 
 .cta:active {
+  margin-top: 5px;
+  margin-bottom: -5px;
+  transition: padding-right 0.3s ease-out, box-shadow 0.5s,
+    margin-left 0.3s ease-out, margin-top 0.1s ease-out,
+    margin-bottom 0.1s ease-out;
 }
 
 .cta:hover,
 :focus {
   margin-left: 0px;
   transition: padding-right 0.3s ease-out, box-shadow 0.5s,
-    margin-left 0.3s ease-out;
+    margin-left 0.3s ease-out, margin-top 0.1s ease-out,
+    margin-bottom 0.1s ease-out;
   padding-right: 30px;
   box-shadow: 10px 10px 0 #fbc638;
 }
