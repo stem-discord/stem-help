@@ -1,5 +1,9 @@
 <template>
-  <div ref="slot"></div>
+  <div ref="slot">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
 </template>
 
 <script>

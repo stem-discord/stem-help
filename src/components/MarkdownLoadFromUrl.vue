@@ -1,5 +1,8 @@
 <template>
-  <MD :text="content" />
+  <MD v-if="content" :text="content" />
+  <div v-else class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
 </template>
 
 <script>
@@ -8,7 +11,7 @@ import { ref } from "vue";
 
 export default {
   setup() {
-    const content = ref(`loading`);
+    const content = ref(``);
     // const number = ref(0);
 
     // setInterval(() => {
