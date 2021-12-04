@@ -42,17 +42,17 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ `../views/leaderboards/Index.vue`),
+    component: () => import(`../views/leaderboards/Index.vue`),
   },
   {
     path: `/ct`,
     name: `Component testing page`,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ `../views/ComponentTesting.vue`),
+    component: () => import(`../views/ComponentTesting.vue`),
+  },
+  {
+    path: `/cit`,
+    name: `Component integration testing page`,
+    component: () => import(`../views/ComponentIntegrationTesting.vue`),
   },
   {
     path: `/:catchAll(.*)`,
