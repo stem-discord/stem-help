@@ -42,8 +42,38 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import HeightRatio from "#/HeightRatio.vue";
+
+export default {
+  mounted() {
+    const b = document.addEventListener(`keydown`, (event) => {
+      if (event.keyCode === 13) {
+        const cta = this.$refs.cta;
+        if (document.activeElement === cta) {
+          cta.click();
+          cta.classList.add(`active`);
+        }
+      }
+    });
+    const a = document.addEventListener(`keyup`, (event) => {
+      if (event.keyCode === 13) {
+        const cta = this.$refs.cta;
+        cta.classList.remove(`active`);
+      }
+    });
+
+    this.listeners = [a, b];
+  },
+  beforeUnmount() {
+    this.listeners.forEach((listener) => {
+      document.removeEventListener(listener);
+    });
+  },
+  components: {
+    HeightRatio,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -73,12 +103,16 @@ import HeightRatio from "#/HeightRatio.vue";
   outline: none;
 }
 
-.cta:active {
+.cta.active {
   margin-top: 5px;
   margin-bottom: -5px;
   transition: padding-right 0.3s ease-out, box-shadow 0.5s,
     margin-left 0.3s ease-out, margin-top 0.1s ease-out,
     margin-bottom 0.1s ease-out;
+}
+
+.cta:active {
+  @apply active;
 }
 
 .cta:hover,
