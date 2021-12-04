@@ -9,7 +9,6 @@ import sanitizeHtml from "sanitize-html";
 export default {
   mounted() {
     const content = this.text ?? ``;
-    console.log(content);
     this.$refs.slot.innerHTML = sanitizeHtml(marked.parse(content));
   },
   watch: {
