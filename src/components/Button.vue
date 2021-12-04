@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper w-max h-max">
-    <a class="cta" ref="cta">
+    <a class="cta" ref="cta" tabindex="0">
       <div style="transform: skewX(10deg); margin-right: 10px">
         <slot />
       </div>
@@ -72,7 +72,11 @@ import HeightRatio from "#/HeightRatio.vue";
   outline: none;
 }
 
-.cta:hover {
+.cta:active {
+}
+
+.cta:hover,
+:focus {
   margin-left: 0px;
   transition: padding-right 0.3s ease-out, box-shadow 0.5s,
     margin-left 0.3s ease-out;
