@@ -36,9 +36,7 @@
   <h1>Upload your tree!</h1>
 
   <div class="form-wrapper" :class="{ submitting: sendingMeme }">
-    <div class="meme-form-error" v-if="errorMessage">
-      <h2>{{ errorMessage }}</h2>
-    </div>
+    <h5 class="bg-red-500" style="color: grey">{{ errorMessage }}</h5>
     <form @submit.prevent class="form" ref="form">
       <h1 style="opacity: 100%">
         {{ sending ? "Uploading..." : "Submit Here" }}
@@ -88,6 +86,7 @@ const form = ref(null);
 export default {
   setup() {
     const users = ref([]);
+    const errorMessage = ref(undefined);
 
     const voteData = ref({
       0: 1,
@@ -132,6 +131,7 @@ export default {
         } else {
           this.errorMessage = e.statusText;
         }
+        alert(`something went wrong`);
       } finally {
         this.sendingMeme = false;
       }
@@ -143,6 +143,7 @@ export default {
       upvote,
       downvote,
       sendChristmasTree,
+      errorMessage,
     };
   },
   created() {
