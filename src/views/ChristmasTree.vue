@@ -51,11 +51,9 @@
         <label for="title">Title</label>
       </span>
       <span>
-        <input
-          type="text"
-          name="source_code"
+        <textarea
           required
-          style="font-family: Consolas, monaco, monospace"
+          style="font-family: Consolas, monaco, monospace; width: 100%"
         />
         <label for="source_code">Code</label>
       </span>
@@ -213,7 +211,6 @@ export default {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  .meme-form-error,
   form {
     display: flex;
     flex-direction: column;
@@ -223,11 +220,6 @@ export default {
     box-shadow: 0 0 7px #00000041;
     width: 36rem;
     margin: 0 auto;
-  }
-  .meme-form-error {
-    background-color: #ff6347;
-    margin-bottom: 3rem;
-    // display: none; (toggle between none and flex)
   }
   form {
     background: #00000000;
@@ -240,13 +232,20 @@ export default {
       justify-content: flex-start;
       margin: 1rem 0;
       width: 100%;
-      input {
+      input,
+      textarea {
         width: 100%;
         padding: 0.8rem;
         background: none;
         border-bottom: solid 2px #613a94a1;
         margin-bottom: 1rem;
       }
+
+      textarea {
+        height: 250px;
+        resize: none;
+      }
+
       label {
         position: absolute;
         margin-left: 1.2rem;
@@ -258,7 +257,16 @@ export default {
         transform: translate(-0.2rem, -3rem);
         color: rgb(116, 116, 116);
       }
+      textarea:valid ~ label,
+      textarea:focus ~ label {
+        font-size: 1.2rem;
+        transform: translate(-0.2rem, -150px);
+        color: rgb(116, 116, 116);
+      }
       input:focus {
+        border-bottom: solid 2px var(--main-alpha);
+      }
+      textarea:focus {
         border-bottom: solid 2px var(--main-alpha);
       }
     }
