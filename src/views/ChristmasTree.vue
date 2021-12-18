@@ -86,6 +86,8 @@
 import Button from "@/components/Button.vue";
 import { ref } from "vue";
 
+const refresh = ref(async () => {});
+
 const form = ref(null);
 
 export default {
@@ -126,7 +128,7 @@ export default {
           } else {
             console.log(`success`);
             alert(`your code has been submitted!`);
-            form.value.reset();
+            refresh.value();
           }
         });
       } catch (e) {
@@ -152,23 +154,25 @@ export default {
     };
   },
   created() {
-    fetch(`https://api.stem.help/v1/events/christmastree`)
-      .then((res) => res.json())
-      .then(async (data) => {
-        await Promise.all(
-          Object.entries(data.trees).map(async ([k, v]) => {
-            const { tag } = await fetch(
-              `https://api.stem.help/v1/service/discordidlookup/${k}`,
-            ).then((r) => r.json());
-            v.username = tag;
-          }),
-        );
-        this.users = data.trees;
-      })
-      .catch((err) => {
-        alert(`error fetching christmas tree data`);
-        console.log(err);
-      });
+    refresh.value = () =>
+      fetch(`https://api.stem.help/v1/events/christmastree`)
+        .then((res) => res.json())
+        .then(async (data) => {
+          await Promise.all(
+            Object.entries(data.trees).map(async ([k, v]) => {
+              const { tag } = await fetch(
+                `https://api.stem.help/v1/service/discordidlookup/${k}`,
+              ).then((r) => r.json());
+              v.username = tag;
+            }),
+          );
+          this.users = data.trees;
+        })
+        .catch((err) => {
+          alert(`error fetching christmas tree data`);
+          console.log(err);
+        });
+    refresh.value();
   },
   mounted() {
     form.value = this.$refs.form;
