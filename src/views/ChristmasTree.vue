@@ -4,6 +4,7 @@
   <div class="view">
     <div class="card" v-for="(user, k) in users" :key="k">
       <h2 class="text-render">{{ user.username }}</h2>
+      <h4 class="text-render">{{ user.title }}</h4>
       <code
         class="p-4 bg-gray-800 text-render text-xs"
         style="
@@ -53,6 +54,7 @@
       <span>
         <textarea
           required
+          name="source_code"
           style="font-family: Consolas, monaco, monospace; width: 100%"
         />
         <label for="source_code">Code</label>
