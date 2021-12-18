@@ -6,7 +6,7 @@
       <h2 class="text-render">{{ user.username }}</h2>
       <code
         class="p-4 bg-gray-800 text-render text-xs"
-        style="color: #ffffff; border-radius: 5px; width: 260px"
+        style="color: #ffffff; border-radius: 5px; width: 460px"
       >
         {{ user.stdout }}
       </code>
@@ -14,8 +14,8 @@
       <div class="voting">
         <Button
           class="upvote"
-          :active="voteData[user.id] === 1 ? `activeUp` : ``"
-          @click="upvote(user.id)"
+          :active="voteData[k] === 1 ? `activeUp` : ``"
+          @click="upvote(k)"
         >
           <i class="fas fa-thumbs-up"></i>
           <p>{{ user.upvotes }}</p>
@@ -23,8 +23,8 @@
         <div class="w-1"></div>
         <Button
           class="downvote"
-          @click="downvote(user.id)"
-          :active="voteData[user.id] === -1 ? `activeDown` : ``"
+          @click="downvote(k)"
+          :active="voteData[k] === -1 ? `activeDown` : ``"
         >
           <i class="fas fa-thumbs-down"></i>
           <p>{{ user.downvotes }}</p>
@@ -178,7 +178,7 @@ export default {
 .view {
   display: grid;
   grid-auto-flow: row;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 }
 
 .card {
