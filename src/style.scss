@@ -68,9 +68,7 @@ h6 {
 }
 
 .text-render {
-  * {
-    @apply select-text;
-  }
+  @apply select-text;
 }
 
 li:not(:last-child) {
