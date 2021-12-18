@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper w-max h-max">
-    <a class="cta" ref="cta" tabindex="0">
+    <a :class="[`cta`, active]" ref="cta" tabindex="0">
       <div style="transform: skewX(10deg); margin-right: 10px">
         <slot />
       </div>
@@ -67,11 +67,14 @@ export default {
   },
   beforeUnmount() {
     this.listeners.forEach((listener) => {
-      document.removeEventListener(listener);
+      document.removeEventListener(document, listener);
     });
   },
   components: {
     HeightRatio,
+  },
+  props: {
+    active: Boolean,
   },
 };
 </script>
@@ -97,6 +100,13 @@ export default {
   transition: padding-right 0.3s ease-out, box-shadow 0.5s,
     margin-left 0.3s ease-out, margin-top 0.1s ease-out,
     margin-bottom 0.1s ease-out;
+}
+
+.cta.activeUp {
+  background: #25e6cc;
+}
+.cta.activeDown {
+  background: #e62575;
 }
 
 .cta:focus {

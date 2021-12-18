@@ -14,6 +14,7 @@
       <router-link to="/about">About</router-link>
       <router-link to="/contact">Contact</router-link>
       <router-link to="/leaderboards">Leaderboards</router-link>
+      <router-link to="/event">Christmas Tree</router-link>
     </div>
     <div class="login">
       <router-link to="/login">Login</router-link>
@@ -23,7 +24,9 @@
   </div>
   <!-- this popup is absolute -->
   <div id="popup" :if="popup != null" />
-  <router-view class="h-full w-full" />
+  <div class="content" :class="[keyboard ? `keyboard` : ``]">
+    <router-view class="h-full w-full" />
+  </div>
 </template>
 
 <script setup>
@@ -36,6 +39,10 @@ function cookieAccepted() {
 
 <style lang="scss">
 @use "style.scss";
+
+.content {
+  padding: 1rem;
+}
 
 #app {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
