@@ -14,7 +14,7 @@
           word-wrap: break-word;
         "
       >
-        {{ user.stdout }}
+        <pre>{{ user.stdout }}</pre>
       </code>
       <div class="h-5"></div>
       <div class="voting">
