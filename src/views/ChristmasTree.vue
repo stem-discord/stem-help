@@ -6,7 +6,12 @@
       <h2 class="text-render">{{ user.username }}</h2>
       <code
         class="p-4 bg-gray-800 text-render text-xs"
-        style="color: #ffffff; border-radius: 5px; width: 460px"
+        style="
+          color: #ffffff;
+          border-radius: 5px;
+          width: 460px;
+          word-wrap: break-word;
+        "
       >
         {{ user.stdout }}
       </code>
