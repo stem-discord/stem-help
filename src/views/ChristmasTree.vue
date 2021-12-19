@@ -1,6 +1,10 @@
 <template>
   <h1>View our community trees!</h1>
 
+  <Button @click="refresh">Refresh</Button>
+
+  <div class="h-5"></div>
+
   <div class="view">
     <div
       class="card"
@@ -178,6 +182,7 @@ export default {
       downvote,
       sendChristmasTree,
       errorMessage,
+      refresh,
     };
   },
   created() {
