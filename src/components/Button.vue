@@ -1,6 +1,10 @@
 <template>
   <div class="wrapper w-max h-max">
-    <a :class="[`cta`, active]" ref="cta" tabindex="0">
+    <a
+      :class="{ cta: true, [active]: true, active: keyboardActive }"
+      ref="cta"
+      tabindex="0"
+    >
       <div style="transform: skewX(10deg); margin-right: 10px">
         <slot />
       </div>
@@ -44,37 +48,48 @@
 
 <script>
 import HeightRatio from "#/HeightRatio.vue";
+import { ref } from "vue";
 
 export default {
+  setup() {
+    const keyboardActive = ref(false);
+    return {
+      keyboardActive,
+    };
+  },
   mounted() {
-    const b = document.addEventListener(`keydown`, (event) => {
+    const a = (event) => {
       if (event.keyCode === 13) {
         const cta = this.$refs.cta;
         if (document.activeElement === cta) {
           cta.click();
-          cta.classList.add(`active`);
+          this.keyboardActive = true;
         }
       }
-    });
-    const a = document.addEventListener(`keyup`, (event) => {
+    };
+
+    document.addEventListener(`keydown`, a);
+
+    const b = (event) => {
       if (event.keyCode === 13) {
         const cta = this.$refs.cta;
-        cta.classList.remove(`active`);
+        this.keyboardActive = false;
       }
-    });
+    };
+
+    document.addEventListener(`keyup`, b);
 
     this.listeners = [a, b];
   },
   beforeUnmount() {
-    this.listeners.forEach((listener) => {
-      document.removeEventListener(document, listener);
-    });
+    document.removeEventListener(`keydown`, this.listeners[0]);
+    document.removeEventListener(`keyup`, this.listeners[1]);
   },
   components: {
     HeightRatio,
   },
   props: {
-    active: Boolean,
+    active: String,
   },
 };
 </script>
