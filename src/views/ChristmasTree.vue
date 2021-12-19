@@ -7,14 +7,11 @@
       <h4 class="text-render">{{ user.title }}</h4>
       <code
         class="p-4 bg-gray-800 text-render text-xs"
-        style="
-          color: #ffffff;
-          border-radius: 5px;
-          width: 460px;
-          word-wrap: break-word;
-        "
+        style="color: #ffffff; border-radius: 5px; width: 460px"
       >
-        <pre>{{ user.stdout }}</pre>
+        <pre class="text-render" style="overflow: hidden; width: 100%">{{
+          user.stdout
+        }}</pre>
       </code>
       <div class="h-5"></div>
       <div class="voting">
