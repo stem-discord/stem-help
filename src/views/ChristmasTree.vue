@@ -83,6 +83,27 @@
 import Button from "@/components/Button.vue";
 import { ref } from "vue";
 
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 const refresh = ref(async () => {});
 
 const form = ref(null);
@@ -163,7 +184,15 @@ export default {
               v.username = tag;
             }),
           );
-          this.users = data.trees;
+
+          // shuffle order
+          const keys = Object.keys(data.trees);
+          const n = {};
+          shuffle(keys).forEach((k) => {
+            n[k] = data.trees[k];
+          });
+
+          this.users = n;
         })
         .catch((err) => {
           alert(`error fetching christmas tree data`);
