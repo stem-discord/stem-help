@@ -2,7 +2,16 @@
   <h1>View our community trees!</h1>
 
   <div class="view">
-    <div class="card" v-for="(user, k) in users" :key="k">
+    <div
+      class="card"
+      v-for="(user, k) in users"
+      :key="k"
+      :style="{
+        'grid-row': `span ${Math.ceil(
+          (220 + 16 * (user.stdout.match(/\n/g)?.length || 0)) / 240,
+        )}`,
+      }"
+    >
       <h2 class="text-render">{{ user.username }}</h2>
       <h4 class="text-render">{{ user.title }}</h4>
       <code
@@ -214,6 +223,7 @@ export default {
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-auto-rows: fit-content(1em);
 }
 
 .card {
