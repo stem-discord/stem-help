@@ -16,7 +16,10 @@
         )}`,
       }"
     >
-      <h2 class="text-render">{{ user.username }}</h2>
+      <div class="namearea w-full">
+        <h2 class="text-render" style="display: inline">{{ user.username }}</h2>
+        <h5 style="display: inline">#{{ user.discriminator }}</h5>
+      </div>
       <h4 class="text-render">{{ user.title }}</h4>
       <code
         class="p-4 bg-gray-800 text-render text-xs"
@@ -196,10 +199,11 @@ export default {
         .then(async (data) => {
           await Promise.all(
             Object.entries(data.trees).map(async ([k, v]) => {
-              const { tag } = await fetch(
+              const { discriminator, username } = await fetch(
                 `https://api.stem.help/v1/service/discordidlookup/${k}`,
               ).then((r) => r.json());
-              v.username = tag;
+              v.discriminator = discriminator;
+              v.username = username;
             }),
           );
 
