@@ -51,7 +51,7 @@
   <div class="h-10"></div>
   <h1>Upload your tree!</h1>
 
-  <div class="form-wrapper" :class="{ submitting: sendingMeme }">
+  <div class="form-wrapper" :class="{ submitting: sending }">
     <h5 class="bg-red-500" style="color: grey">{{ errorMessage }}</h5>
     <form @submit.prevent class="form" ref="form">
       <h1 style="opacity: 100%">
@@ -122,9 +122,12 @@ const refresh = ref(async () => {});
 const form = ref(null);
 
 export default {
+  inheritAttrs: false,
   setup() {
     const users = ref([]);
     const errorMessage = ref(undefined);
+
+    const sending = ref(false);
 
     const voteData = ref({
       0: 1,
@@ -140,7 +143,7 @@ export default {
     async function sendChristmasTree() {
       if (!form.value) return;
       console.log(`sending...`);
-      this.sendingMeme = true;
+      this.sending = true;
       const fd = new FormData(form.value);
       try {
         await fetch(`https://api.stem.help/v1/events/christmastree`, {
@@ -171,7 +174,7 @@ export default {
         }
         alert(`something went wrong`);
       } finally {
-        this.sendingMeme = false;
+        this.sending = false;
       }
     }
 
@@ -183,6 +186,7 @@ export default {
       sendChristmasTree,
       errorMessage,
       refresh,
+      sending,
     };
   },
   created() {
