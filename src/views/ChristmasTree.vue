@@ -144,6 +144,17 @@ const refresh = ref(async () => {});
 
 const form = ref(null);
 
+function treeData(trees) {
+  // shuffle order
+  const keys = Object.keys(trees);
+  const n = {};
+  shuffle(keys).forEach((k) => {
+    n[k] = trees[k];
+  });
+
+  return n;
+}
+
 export default {
   inheritAttrs: false,
   setup() {
@@ -185,7 +196,7 @@ export default {
           } else {
             console.log(`success`);
             alert(`your code has been submitted!`);
-            refresh.value();
+            this.users = treeData(jbody.trees);
           }
         });
       } catch (e) {
@@ -227,14 +238,7 @@ export default {
             }),
           );
 
-          // shuffle order
-          const keys = Object.keys(data.trees);
-          const n = {};
-          shuffle(keys).forEach((k) => {
-            n[k] = data.trees[k];
-          });
-
-          this.users = n;
+          this.users = treeData(data.trees);
         })
         .catch((err) => {
           alert(`error fetching christmas tree data`);
