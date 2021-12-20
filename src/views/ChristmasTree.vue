@@ -149,7 +149,7 @@ export default {
       this.sending = true;
       const fd = new FormData(form.value);
       try {
-        await fetch(`https://api.stem.help/v1/events/christmastree`, {
+        await fetch(`${process.env.VUE_APP_API_URL}/v1/events/christmastree`, {
           method: `POST`,
           body: fd,
           headers: {
@@ -194,13 +194,13 @@ export default {
   },
   created() {
     refresh.value = () =>
-      fetch(`https://api.stem.help/v1/events/christmastree`)
+      fetch(`${process.env.VUE_APP_API_URL}/v1/events/christmastree`)
         .then((res) => res.json())
         .then(async (data) => {
           await Promise.all(
             Object.entries(data.trees).map(async ([k, v]) => {
               const { discriminator, username } = await fetch(
-                `https://api.stem.help/v1/service/discordidlookup/${k}`,
+                `${process.env.VUE_APP_API_URL}/v1/service/discordidlookup/${k}`,
               ).then((r) => r.json());
               v.discriminator = discriminator;
               v.username = username;
