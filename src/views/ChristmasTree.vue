@@ -90,6 +90,26 @@
         />
         <label for="token">Your token (get it by dming STEM.HELP !token)</label>
       </span>
+      <div class="check flex items-center">
+        <input
+          type="checkbox"
+          name="hide"
+          required
+          style="
+            font-family: Consolas, monaco, monospace;
+            height: 20px;
+            width: 20px;
+          "
+        />
+        <div class="w-5"></div>
+        <div>
+          <label for="hide" style="display: inline"
+            >Hide output until voting period</label
+          >
+          <p>(uncheck to let people see your tree)</p>
+        </div>
+      </div>
+      <div class="h-5"></div>
       <Button @click="sendChristmasTree()" style="color: black">Upload!</Button>
     </form>
   </div>
