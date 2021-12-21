@@ -144,7 +144,16 @@ const refresh = ref(async () => {});
 
 const form = ref(null);
 
-function treeData(trees) {
+async function treeData(trees) {
+  await Promise.all(
+    Object.entries(trees).map(async ([k, v]) => {
+      const { discriminator, username } = await fetch(
+        `${process.env.VUE_APP_API_URL}/v1/service/discordidlookup/${k}`,
+      ).then((r) => r.json());
+      v.discriminator = discriminator;
+      v.username = username;
+    }),
+  );
   // shuffle order
   const keys = Object.keys(trees);
   const n = {};
@@ -196,7 +205,8 @@ export default {
           } else {
             console.log(`success`);
             alert(`your code has been submitted!`);
-            this.users = treeData(jbody.trees);
+            await treeData(jbody.trees);
+            this.users = jbody.trees;
           }
         });
       } catch (e) {
@@ -228,17 +238,8 @@ export default {
       fetch(`${process.env.VUE_APP_API_URL}/v1/events/christmastree`)
         .then((res) => res.json())
         .then(async (data) => {
-          await Promise.all(
-            Object.entries(data.trees).map(async ([k, v]) => {
-              const { discriminator, username } = await fetch(
-                `${process.env.VUE_APP_API_URL}/v1/service/discordidlookup/${k}`,
-              ).then((r) => r.json());
-              v.discriminator = discriminator;
-              v.username = username;
-            }),
-          );
-
-          this.users = treeData(data.trees);
+          await treeData(data.trees);
+          this.users = data.trees;
         })
         .catch((err) => {
           alert(`error fetching christmas tree data`);
