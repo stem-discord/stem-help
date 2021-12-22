@@ -1,16 +1,4 @@
 {
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
-  "compilerOptions": {
-    "jsx": "preserve",
-    "module": "es2020",
-  },
-  "paths": {
-    "#": ["src/components"]
-  }
+  // https://v3.nuxtjs.org/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
 }

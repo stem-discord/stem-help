@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --tx-100: 17, 24, 39;
+  --tx-200: 55, 65, 81;
+  --tx-300: 107, 114, 128;
+  --tx-danger: 239, 68, 68;
+
+  --bg-page: 249, 250, 251;
+  --bg-nav: 255, 255, 255;
+
+  --bg-button: 255, 255, 255;
+  --bg-element: 244, 244, 245;
+  --bg-element-hover: 228, 228, 231;
+  --bg-element-active: 212, 212, 216;
+  --bd-element: 228, 228, 231;
+
+  --bg-input: 255, 255, 255;
+  --bd-input: 209, 213, 219;
+
+  --bd-100: 209, 213, 219;
+  --bd-nav: 237, 241, 244;
+
+  --bg-scrollbar: #edece9;
+  --bg-scrollbarThumb: #d3d1cb;
+  --bg-scrollbarThumbHover: #aeaca6;
+}
+
+.dark {
+  --tx-100: 219, 219, 219;
+  --tx-200: 197, 197, 197;
+  --tx-300: 116, 116, 116;
+
+  --bg-page: 18, 18, 18;
+  --bg-nav: 31, 31, 31;
+
+  --bg-button: var(--bg-input);
+  --bg-element: 70, 70, 70;
+  --bg-element-hover: 106, 106, 106;
+  --bg-element-active: 129, 129, 129;
+  --bd-element: var(--bd-input);
+
+  --bg-input: 29, 29, 29;
+  --bd-input: 55, 55, 55;
+
+  --bd-100: 33, 33, 33;
+  --bd-nav: 55, 55, 55;
+
+  --bg-scrollbar: #2b2d31;
+  --bg-scrollbarThumb: #494949;
+  --bg-scrollbarThumbHover: #aeaca6;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: rgb(var(--bg-page));
+  color: rgb(var(--tx-100));
+  font-family: 'Roboto', sans-serif;
+}
+
+[v-cloak] > * {
+  display: none;
+}
+[v-cloak]::before {
+  content: 'loading…';
+}
+
+@layer base {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-x-center {
+    @apply flex justify-center;
+  }
+
+  .flex-y-center {
+    @apply flex items-center;
+  }
+}
+
+@layer components {
+  .button {
+    --button-text: rgb(var(--tx-100));
+    --button-bg: rgb(var(--bg-button));
+    --button-bg-hover: rgb(var(--bg-element));
+    --button-bg-active: rgb(var(--bg-element-) hover);
+    --button-border: rgb(var(--bd-element));
+
+    @apply flex-center px-4 py-1 rounded-lg border cursor-pointer select-none;
+
+    color: var(--button-text);
+    border-color: var(--button-border);
+    background-color: var(--button-bg);
+
+    &:hover,
+    &:focus {
+      @apply outline-none;
+
+      background-color: var(--button-bg-hover);
+    }
+
+    &:active {
+      background-color: var(--button-bg-active);
+    }
+
+    &-solid {
+      @extend .button;
+
+      --button-bg: rgb(var(--bg-element));
+      --button-bg-hover: rgb(var(--bg-element-hover));
+      --button-bg-active: rgb(var(--bg-element-active));
+
+      &-accent {
+        @extend .button-solid;
+
+        --button-text: white;
+        --button-bg: rgb(var(--accent-blue));
+        --button-bg-hover: rgba(var(--accent-blue-hover), 0.89);
+        --button-bg-active: rgb(var(--accent-blue-active));
+      }
+    }
+
+    &-light {
+      @extend .button;
+
+      --button-bg: rgb(var(--bg-element));
+      --button-bg-hover: rgb(var(--bg-element-hover));
+      --button-bg-active: rgb(var(--bg-element-active));
+      --button-border: transparent;
+    }
+
+    &-ghost {
+      @extend .button;
+
+      --button-bg: transparent;
+      --button-bg-hover: rgb(var(--bg-element));
+      --button-bg-active: rgb(var(--bg-element-hover));
+      --button-border: transparent;
+    }
+
+    &-link {
+      @extend .button;
+
+      --button-text: #52525b;
+      --button-bg: transparent;
+      --button-bg-hover: transparent;
+      --button-bg-active: transparent;
+      --button-border: transparent;
+
+      @apply p-0;
+
+      &:hover {
+        text-decoration: underline 1px var(--button-text);
+      }
+    }
+  }
+
+  .input-text {
+    @apply bg-input appearance-none block w-full px-3 py-2 border border-100 rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm;
+  }
+
+  .listbox {
+    @apply relative;
+
+    &-trigger {
+      @apply relative flex justify-start items-center py-1.5 rounded-lg border border-input cursor-pointer select-none;
+
+      &:hover,
+      &:focus {
+        @apply bg-element;
+      }
+
+      &-label {
+        @apply pl-4 pr-8 overflow-hidden select-none truncate whitespace-nowrap;
+      }
+
+      &-icon {
+        @apply w-5 absolute inset-y-0 right-2 flex items-center;
+      }
+    }
+
+    &-options {
+      @apply absolute inset-x-0 mt-2 rounded-lg overflow-hidden border border-input p-1;
+    }
+
+    &-option {
+      @apply px-4 py-1.5 truncate whitespace-nowrap cursor-pointer select-none text-200 rounded-md;
+
+      &-active {
+        @apply bg-element text-100;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-scrollbar);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-scrollbarThumb);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-scrollbarThumbHover);
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
