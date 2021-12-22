@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-/dist
 
 # Dev files
 ?.*
@@ -25,3 +24,8 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# bulid files
+.nuxt
+/dist
+
