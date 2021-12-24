@@ -5,6 +5,15 @@
 
   <div class="h-5"></div>
 
+  <form v-if="!token" @submit.prevent="login" class="login-form">
+    <input type="text" ref="tokenInput" placeholder="username" />
+    <button @click="loginUsingToken">Login using token</button>
+  </form>
+
+  <h6 v-else>Your id is {{ token.split(`_`)[0] }}</h6>
+
+  <div class="h-5"></div>
+
   <div class="view">
     <div
       class="card"
@@ -37,7 +46,7 @@
           @click="upvote(k)"
         >
           <i class="fas fa-thumbs-up"></i>
-          <p>{{ user.upvotes }}</p>
+          <p>{{ Object.values(user.votes).filter((v) => v === 1).length }}</p>
         </Button>
         <div class="w-1"></div>
         <Button
@@ -46,7 +55,7 @@
           :active="voteData[k] === -1 ? `activeDown` : ``"
         >
           <i class="fas fa-thumbs-down"></i>
-          <p>{{ user.downvotes }}</p>
+          <p>{{ Object.values(user.votes).filter((v) => v === -1).length }}</p>
         </Button>
       </div>
     </div>
@@ -140,10 +149,6 @@ function shuffle(array) {
   return array;
 }
 
-const refresh = ref(async () => {});
-
-const form = ref(null);
-
 async function treeData(trees) {
   await Promise.all(
     Object.entries(trees).map(async ([k, v]) => {
@@ -167,22 +172,70 @@ async function treeData(trees) {
 export default {
   inheritAttrs: false,
   setup() {
+    const refresh = ref(async () => {});
+
+    const form = ref(null);
+
+    const loginForm = ref(null);
+    const token = ref(null);
+    const tokenInput = ref(null);
+
     const users = ref([]);
     const errorMessage = ref(undefined);
 
     const sending = ref(false);
 
-    const voteData = ref({
-      0: 1,
-      1: -1,
-    });
+    const voteData = ref({});
+
+    // Post data to server
+    function updateVotes() {
+      // content
+      console.log(token.value);
+      fetch(`${process.env.VUE_APP_API_URL}/v1/events/christmastree/vote`, {
+        method: `POST`,
+        headers: {
+          "Content-Type": `application/json`,
+        },
+        body: JSON.stringify({
+          votes: voteData.value,
+          token: token.value,
+        }),
+      }).then(() => {
+        refresh.value();
+      });
+    }
 
     function upvote(id) {
+      if (!this.token) {
+        alert(`Please login first!`);
+      }
       this.voteData[id] = (this.voteData[id] ?? 0) <= 0 ? 1 : 0;
+      updateVotes();
     }
     function downvote(id) {
+      if (!this.token) {
+        alert(`Please login first!`);
+      }
       this.voteData[id] = (this.voteData[id] ?? 0) >= 0 ? -1 : 0;
+      updateVotes();
     }
+
+    function loginUsingToken() {
+      const inp = this.tokenInput.value;
+
+      if (inp.length < 1) {
+        alert(`Please enter a token`);
+        return;
+      }
+
+      if (!inp.match(/^\d+_\w+$/)) {
+        alert(`Please enter a valid token`);
+        return;
+      }
+
+      this.token = inp;
+    }
+
     async function sendChristmasTree() {
       if (!form.value) return;
       console.log(`sending...`);
@@ -231,10 +284,15 @@ export default {
       errorMessage,
       refresh,
       sending,
+      form,
+      loginForm,
+      loginUsingToken,
+      token,
+      tokenInput,
     };
   },
   created() {
-    refresh.value = () =>
+    this.refresh = () =>
       fetch(`${process.env.VUE_APP_API_URL}/v1/events/christmastree`)
         .then((res) => res.json())
         .then(async (data) => {
@@ -245,10 +303,11 @@ export default {
           alert(`error fetching christmas tree data`);
           console.log(err);
         });
-    refresh.value();
+    this.refresh();
   },
   mounted() {
-    form.value = this.$refs.form;
+    this.form = this.$refs.form;
+    this.tokenInput = this.$refs.tokenInput;
   },
   components: {
     Button,
