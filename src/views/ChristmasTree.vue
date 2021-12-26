@@ -21,12 +21,11 @@
       :key="k"
       :style="{
         'grid-row': `span ${Math.ceil(
-          20 +
-            (220 +
-              16 *
-                ((user.stdout.match(/\n/g)?.length || 0) +
-                  (userCodes?.[k]?.source_code?.match(/\n/g)?.length || 0))) /
-              240,
+          (260 +
+            16 *
+              ((user.stdout.match(/\n/g)?.length || 0) +
+                (userCodes?.[k]?.source_code?.match(/\n/g)?.length || 0))) /
+            240,
         )}`,
       }"
     >
