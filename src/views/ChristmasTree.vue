@@ -25,7 +25,7 @@
             (220 +
               16 *
                 ((user.stdout.match(/\n/g)?.length || 0) +
-                  (userCodes[k]?.source_code?.match(/\n/g)?.length || 0))) /
+                  (userCodes?.[k]?.source_code?.match(/\n/g)?.length || 0))) /
               240,
         )}`,
       }"
@@ -40,16 +40,16 @@
         style="color: #ffffff; border-radius: 5px; width: 460px"
       >
         <pre class="text-render" style="overflow: hidden; width: 100%">{{
-          user.stdout
+          user?.stdout
         }}</pre>
       </code>
-      <h5>Source code {{ userCodes[k]?.code_type }}</h5>
+      <h5>Source code {{ userCodes?.[k]?.code_type }}</h5>
       <code
         class="p-4 bg-gray-800 text-render text-xs"
         style="color: #ffffff; border-radius: 5px; width: 460px"
       >
         <pre class="text-render" style="overflow: hidden; width: 100%">{{
-          user.stdout
+          user?.source_code
         }}</pre>
       </code>
       <div class="h-5"></div>
