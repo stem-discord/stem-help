@@ -16,9 +16,9 @@
       <router-link to="/leaderboards">Leaderboards</router-link>
       <router-link to="/event">Christmas Tree</router-link>
     </div>
-    <div class="login">
+    <!-- <div class="login">
       <router-link to="/login">Login</router-link>
-    </div>
+    </div> -->
     <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
   </div>
