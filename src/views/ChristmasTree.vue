@@ -5,9 +5,11 @@
 
   <div class="h-5"></div>
 
+  <h1>login button is below here</h1>
+
   <form v-if="!token" @submit.prevent="login" class="login-form">
     <input type="text" ref="tokenInput" placeholder="token" />
-    <button @click="loginUsingToken">
+    <button @click="loginUsingToken" style="border: 1px solid black">
       Login using token (get it by dming STEM.HELP "!token")
     </button>
   </form>
