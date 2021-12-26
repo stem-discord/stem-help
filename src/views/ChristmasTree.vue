@@ -6,8 +6,10 @@
   <div class="h-5"></div>
 
   <form v-if="!token" @submit.prevent="login" class="login-form">
-    <input type="text" ref="tokenInput" placeholder="username" />
-    <button @click="loginUsingToken">Login using token</button>
+    <input type="text" ref="tokenInput" placeholder="token" />
+    <button @click="loginUsingToken">
+      Login using token (get it by dming STEM.HELP "!token")
+    </button>
   </form>
 
   <h6 v-else>Your id is {{ token.split(`_`)[0] }}</h6>
