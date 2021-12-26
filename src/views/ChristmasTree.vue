@@ -51,7 +51,7 @@
         class="p-4 bg-gray-800 text-render text-xs"
         style="color: #ffffff; border-radius: 5px; width: 460px"
       >
-        <pre class="text-render" style="overflow: hidden; width: 100%">{{
+        <pre class="text-render" style="white-space: pre-wrap; width: 100%">{{
           userCodes?.[k]?.source_code
         }}</pre>
       </code>
