@@ -21,7 +21,12 @@
       :key="k"
       :style="{
         'grid-row': `span ${Math.ceil(
-          (220 + 16 * (user.stdout.match(/\n/g)?.length || 0)) / 240,
+          20 +
+            (220 +
+              16 *
+                ((user.stdout.match(/\n/g)?.length || 0) +
+                  (userCodes[k]?.source_code?.match(/\n/g)?.length || 0))) /
+              240,
         )}`,
       }"
     >
@@ -30,6 +35,15 @@
         <h5 style="display: inline">#{{ user.discriminator }}</h5>
       </div>
       <h4 class="text-render">{{ user.title }}</h4>
+      <code
+        class="p-4 bg-gray-800 text-render text-xs"
+        style="color: #ffffff; border-radius: 5px; width: 460px"
+      >
+        <pre class="text-render" style="overflow: hidden; width: 100%">{{
+          user.stdout
+        }}</pre>
+      </code>
+      <h5>Source code {{ userCodes[k]?.code_type }}</h5>
       <code
         class="p-4 bg-gray-800 text-render text-xs"
         style="color: #ffffff; border-radius: 5px; width: 460px"
@@ -181,6 +195,7 @@ export default {
     const tokenInput = ref(null);
 
     const users = ref([]);
+    const userCodes = ref([]);
     const errorMessage = ref(undefined);
 
     const sending = ref(false);
@@ -260,6 +275,7 @@ export default {
             alert(`your code has been submitted!`);
             await treeData(jbody.trees);
             this.users = jbody.trees;
+            this.userCodes = jbody.codes;
           }
         });
       } catch (e) {
@@ -277,6 +293,7 @@ export default {
 
     return {
       users,
+      userCodes,
       voteData,
       upvote,
       downvote,
@@ -298,6 +315,7 @@ export default {
         .then(async (data) => {
           await treeData(data.trees);
           this.users = data.trees;
+          this.userCodes = data.codes;
         })
         .catch((err) => {
           alert(`error fetching christmas tree data`);
