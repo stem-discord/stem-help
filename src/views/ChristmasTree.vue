@@ -49,7 +49,7 @@
         style="color: #ffffff; border-radius: 5px; width: 460px"
       >
         <pre class="text-render" style="overflow: hidden; width: 100%">{{
-          user?.source_code
+          userCodes?.[k]?.source_code
         }}</pre>
       </code>
       <div class="h-5"></div>
