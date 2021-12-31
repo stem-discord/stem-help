@@ -62,7 +62,7 @@
           :active="voteData[k] === 1 ? `activeUp` : ``"
           @click="upvote(k)"
         >
-          <i class="fas fa-thumbs-up"></i>
+          <i class="fa fa-thumbs-up"></i>
           <p>{{ Object.values(user.votes).filter((v) => v === 1).length }}</p>
         </Button>
         <div class="w-1"></div>
@@ -71,7 +71,7 @@
           @click="downvote(k)"
           :active="voteData[k] === -1 ? `activeDown` : ``"
         >
-          <i class="fas fa-thumbs-down"></i>
+          <i class="fa fa-thumbs-down"></i>
           <p>{{ Object.values(user.votes).filter((v) => v === -1).length }}</p>
         </Button>
       </div>
