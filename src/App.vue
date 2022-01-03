@@ -6,7 +6,21 @@
     @clicked-accept="cookieAccepted"
   />
   <div id="nav">
-    <router-link to="/">
+    <router-link
+      to="/"
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <img
+        src="..//public/images/logodark.png"
+        alt="STEM Helpers &amp; Students Discord logo"
+        style="height: 3rem"
+      />
+      <div class="w-3"></div>
       <Logo text="STEM" />
     </router-link>
     <!-- later add ways to check for mobile or not -->
