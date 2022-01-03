@@ -5,13 +5,18 @@
 
   <div class="h-5"></div>
 
-  <h1>login button is below here</h1>
+  <h3>login button is below here</h3>
 
   <form v-if="!token" @submit.prevent="login" class="login-form">
-    <input type="text" ref="tokenInput" placeholder="token" />
-    <button @click="loginUsingToken" style="border: 1px solid black">
-      Login using token (get it by dming STEM.HELP "!token")
-    </button>
+    <input
+      type="text"
+      ref="tokenInput"
+      placeholder="token"
+      style="border-bottom: thick double"
+    />
+    <p class="inline">(get it by dming STEM.HELP "!token")</p>
+    <div class="h-3"></div>
+    <Button @click="() => loginUsingToken()"> Login using token </Button>
   </form>
 
   <h6 v-else>Your id is {{ token.split(`_`)[0] }}</h6>
