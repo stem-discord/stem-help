@@ -71,6 +71,14 @@ p {
   font-size: 1.4rem;
 }
 
+p,
+a,
+h1,
+h2,
+h3 {
+  width: 80ch;
+}
+
 * {
   @apply select-text;
 }
