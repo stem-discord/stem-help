@@ -112,7 +112,7 @@
     <div class="w-3"></div>
     <div>
       <p>
-        <a href="https://www.paypal.com/donate/?hosted_button_id=C5UMNVT69K6SE"
+        <a href="https://www.patreon.com/stemserver"
           >Patreon</a
         >
       </p>
