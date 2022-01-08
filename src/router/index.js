@@ -54,6 +54,11 @@ const routes = [
     component: () => import(`../views/Leaderboards.vue`),
   },
   {
+    path: `/toefl`,
+    name: `Toefl`,
+    component: () => import(`../views/Toefl.vue`),
+  },
+  {
     path: `/ct`,
     name: `Component testing page`,
     component: () => import(`../views/ComponentTesting.vue`),
