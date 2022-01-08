@@ -24,6 +24,23 @@ html, body {
 
 input, button, submit { border:none; } 
 
+a.button {
+  border-radius: 0px;
+  padding: 5px;
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  transform: skewX(-15deg);
+  background-color: #1d0e3d;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  color: var(--bg-color);
+  text-decoration: none;
+}
+
+a.button:hover, a.button:focus, a.button:active {
+  color: var(--caret-color);
+}
+
 a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: var(--caret-color);
