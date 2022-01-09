@@ -59,6 +59,11 @@ const routes = [
     component: () => import(`../views/Toefl.vue`),
   },
   {
+    path: `/privacypolicy`,
+    name: `Privacy Policy`,
+    component: () => import(`../views/PrivacyPolicy.vue`),
+  },
+  {
     path: `/ct`,
     name: `Component testing page`,
     component: () => import(`../views/ComponentTesting.vue`),

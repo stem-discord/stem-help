@@ -5,6 +5,7 @@
 
     <h1>Links</h1>
     <router-link to="/rules" class="button">RULES</router-link>
+    <router-link to="/privacypolicy" class="button">PRIVACY POLICY</router-link>
     <router-link to="/toefl" class="button">RESOURCES</router-link>
     <p class="inline">(toefl at the moment, additional content coming soon)</p>
     <!-- <router-link to="/about">About</router-link> -->
