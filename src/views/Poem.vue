@@ -1,19 +1,5 @@
 <template>
-  <h1>View our community trees!</h1>
-
-  <blockquote
-    style="margin-left: 10px; padding-left: 20px; border-left: 6px solid purple"
-  >
-    <p>note from dev:</p>
-    <h4>We are also working on a poem event for Febuary</h4>
-
-    <a
-      href="https://github.com/stem-discord/public/blob/main/events/2022-01-22_poem%20event.md"
-      >↪ Poem event planning link</a
-    >
-  </blockquote>
-
-  <div class="h-4"></div>
+  <h1>View our community poems!</h1>
 
   <Button @click="refresh">Refresh</Button>
 
@@ -43,6 +29,7 @@
       v-for="(user, k) in users"
       :key="k"
       :style="{
+        // fix later
         'grid-row': `span ${Math.ceil(
           (260 +
             16 *
