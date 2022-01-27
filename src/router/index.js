@@ -54,9 +54,15 @@ const routes = [
     component: () => import(`../views/Leaderboards.vue`),
   },
   {
+    // deprecated
     path: `/toefl`,
     name: `Toefl`,
     component: () => import(`../views/Toefl.vue`),
+  },
+  {
+    path: `/github`,
+    name: `Github information`,
+    component: () => import(`../views/Github.vue`),
   },
   {
     path: `/privacypolicy`,
