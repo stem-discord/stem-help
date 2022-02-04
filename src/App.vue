@@ -28,7 +28,7 @@
       <router-link to="/about">About</router-link>
       <router-link to="/contact">Contact</router-link>
       <router-link to="/leaderboards">Leaderboards</router-link>
-      <router-link to="/event">Christmas Tree</router-link>
+      <router-link to="/event">Poem Event</router-link>
     </div>
     <!-- <div class="login">
       <router-link to="/login">Login</router-link>

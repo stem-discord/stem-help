@@ -23,6 +23,13 @@
 
     <div class="h-10"></div>
 
+    <h1>Recent events</h1>
+
+    <router-link to="/christmastree" class="button">CHRISTMAS TREE</router-link>
+    <router-link to="/poem" class="button">POEM</router-link>
+
+    <div class="h-10"></div>
+
     <h1>Join the server</h1>
 
     <p>

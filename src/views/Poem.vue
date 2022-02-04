@@ -31,11 +31,7 @@
       :style="{
         // fix later
         'grid-row': `span ${Math.ceil(
-          (260 +
-            16 *
-              ((user.stdout.match(/\n/g)?.length || 0) +
-                (userCodes?.[k]?.source_code?.match(/\n/g)?.length || 0))) /
-            240,
+          (260 + 16 * (user?.poem?.match(/\n/g)?.length || 0)) / 240,
         )}`,
       }"
     >
@@ -43,24 +39,15 @@
         <h2 class="text-render" style="display: inline">{{ user.username }}</h2>
         <h5 style="display: inline">#{{ user.discriminator }}</h5>
       </div>
-      <h4 class="text-render">{{ user.title }}</h4>
-      <code
+      <h4 class="text-render">{{ user?.title }}</h4>
+      <div
         class="p-4 bg-gray-800 text-render text-xs"
         style="color: #ffffff; border-radius: 5px; width: 460px"
       >
-        <pre class="text-render" style="overflow: hidden; width: 100%">{{
-          user?.stdout
-        }}</pre>
-      </code>
-      <h5>Source code {{ userCodes?.[k]?.code_type }}</h5>
-      <code
-        class="p-4 bg-gray-800 text-render text-xs"
-        style="color: #ffffff; border-radius: 5px; width: 460px"
-      >
-        <pre class="text-render" style="white-space: pre-wrap; width: 100%">{{
-          userCodes?.[k]?.source_code
-        }}</pre>
-      </code>
+        <p class="text-render" style="white-space: pre-wrap; width: 100%">
+          {{ user?.poem }}
+        </p>
+      </div>
       <div class="h-5"></div>
       <div class="voting">
         <Button
@@ -84,7 +71,7 @@
     </div>
   </div>
   <div class="h-10"></div>
-  <h1>Upload your tree!</h1>
+  <h1>Upload your poem!</h1>
 
   <div class="form-wrapper" :class="{ submitting: sending }">
     <h5 class="bg-red-500" style="color: grey">{{ errorMessage }}</h5>
@@ -94,24 +81,11 @@
       </h1>
       <span>
         <input type="text" name="title" required />
-        <label for="title">Title</label>
+        <label class="hover" for="title">Title</label>
       </span>
       <span>
-        <textarea
-          required
-          name="source_code"
-          style="font-family: Consolas, monaco, monospace; width: 100%"
-        />
-        <label for="source_code">Code</label>
-      </span>
-      <span>
-        <input
-          type="text"
-          name="code_type"
-          required
-          style="font-family: Consolas, monaco, monospace"
-        />
-        <label for="code_type">Language (e.g python)</label>
+        <textarea required name="poem" />
+        <label class="hover" for="poem">Poem</label>
       </span>
       <span>
         <input
@@ -120,29 +94,27 @@
           required
           style="font-family: Consolas, monaco, monospace"
         />
-        <label for="token">Your token (get it by dming STEM.HELP !token)</label>
+        <label class="hover" for="token"
+          >Your token (get it by dming STEM.HELP !token)</label
+        >
       </span>
       <div class="check flex items-center">
         <input
           type="checkbox"
           name="hide"
           required
-          style="
-            font-family: Consolas, monaco, monospace;
-            height: 20px;
-            width: 20px;
-          "
+          style="height: 20px; width: 20px"
         />
         <div class="w-5"></div>
         <div>
-          <label for="hide" style="display: inline"
+          <label class="hover" for="hide" style="display: inline"
             >Hide output until voting period</label
           >
-          <p>(uncheck to let people see your tree)</p>
+          <p>(uncheck to let people see your poem)</p>
         </div>
       </div>
       <div class="h-5"></div>
-      <Button @click="sendChristmasTree()" style="color: black">Upload!</Button>
+      <Button @click="sendPoem()" style="color: black">Upload!</Button>
     </form>
   </div>
 </template>
@@ -172,9 +144,9 @@ function shuffle(array) {
   return array;
 }
 
-async function treeData(trees) {
+async function poemData(poems) {
   await Promise.all(
-    Object.entries(trees).map(async ([k, v]) => {
+    Object.entries(poems).map(async ([k, v]) => {
       const { discriminator, username } = await fetch(
         `${process.env.VUE_APP_API_URL}/v1/service/discordidlookup/${k}`,
       ).then((r) => r.json());
@@ -183,10 +155,10 @@ async function treeData(trees) {
     }),
   );
   // shuffle order
-  const keys = Object.keys(trees);
+  const keys = Object.keys(poems);
   const n = {};
   shuffle(keys).forEach((k) => {
-    n[k] = trees[k];
+    n[k] = poems[k];
   });
 
   return n;
@@ -204,7 +176,6 @@ export default {
     const tokenInput = ref(null);
 
     const users = ref([]);
-    const userCodes = ref([]);
     const errorMessage = ref(undefined);
 
     const sending = ref(false);
@@ -215,7 +186,7 @@ export default {
     function updateVotes() {
       // content
       console.log(token.value);
-      fetch(`${process.env.VUE_APP_API_URL}/v1/events/christmastree/vote`, {
+      fetch(`${process.env.VUE_APP_API_URL}/v1/events/poem/vote`, {
         method: `POST`,
         headers: {
           "Content-Type": `application/json`,
@@ -260,13 +231,13 @@ export default {
       this.token = inp;
     }
 
-    async function sendChristmasTree() {
+    async function sendPoem() {
       if (!form.value) return;
       console.log(`sending...`);
       this.sending = true;
       const fd = new FormData(form.value);
       try {
-        await fetch(`${process.env.VUE_APP_API_URL}/v1/events/christmastree`, {
+        await fetch(`${process.env.VUE_APP_API_URL}/v1/events/poem`, {
           method: `POST`,
           body: fd,
           headers: {
@@ -281,10 +252,9 @@ export default {
             this.errorMessage = jbody.message;
           } else {
             console.log(`success`);
-            alert(`your code has been submitted!`);
-            await treeData(jbody.trees);
-            this.users = jbody.trees;
-            this.userCodes = jbody.codes;
+            alert(`your Poem has been submitted!`);
+            await poemData(jbody.poems);
+            this.userPoems = jbody.poems;
           }
         });
       } catch (e) {
@@ -302,11 +272,10 @@ export default {
 
     return {
       users,
-      userCodes,
       voteData,
       upvote,
       downvote,
-      sendChristmasTree,
+      sendPoem,
       errorMessage,
       refresh,
       sending,
@@ -319,15 +288,18 @@ export default {
   },
   created() {
     this.refresh = () =>
-      fetch(`${process.env.VUE_APP_API_URL}/v1/events/christmastree`)
+      fetch(
+        `${process.env.VUE_APP_API_URL}/v1/events/poem?token=${
+          this.token || `n`
+        }`,
+      )
         .then((res) => res.json())
         .then(async (data) => {
-          await treeData(data.trees);
-          this.users = data.trees;
-          this.userCodes = data.codes;
+          await poemData(data.poems);
+          this.users = data.poems;
         })
         .catch((err) => {
-          alert(`error fetching christmas tree data`);
+          alert(`error fetching poem data`);
           console.log(err);
         });
     this.refresh();
@@ -343,6 +315,10 @@ export default {
 </script>
 
 <style lang="scss">
+label.hover {
+  pointer-events: none;
+}
+
 .view {
   display: grid;
   grid-auto-flow: row;
