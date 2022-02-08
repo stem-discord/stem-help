@@ -1,6 +1,19 @@
 <template>
   <h1>View our community poems!</h1>
 
+  <blockquote
+    style="margin-left: 10px; padding-left: 20px; border-left: 6px solid purple"
+  >
+    <h4>Checkout the link for this event!</h4>
+
+    <a
+      href="https://github.com/stem-discord/public/blob/main/events/2022-01-22_poem%20event.md"
+      >↪ Poem event planning link</a
+    >
+  </blockquote>
+
+  <div class="h-5"></div>
+
   <Button @click="refresh">Refresh</Button>
 
   <div class="h-5"></div>
