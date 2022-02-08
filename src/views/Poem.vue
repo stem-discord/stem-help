@@ -295,8 +295,7 @@ export default {
       )
         .then((res) => res.json())
         .then(async (data) => {
-          await poemData(data.poems);
-          this.users = data.poems;
+          this.users = await poemData(data.poems);
         })
         .catch((err) => {
           alert(`error fetching poem data`);
