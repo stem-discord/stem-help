@@ -1,7 +1,7 @@
 <template>
   <div class="border-pretty">
     <h1>Baseball Game</h1>
-    <p>Try it out 😁</p>
+    <p>Made with love 💞</p>
     <div class="h-10"></div>
 
     <!-- create a list of items -->
