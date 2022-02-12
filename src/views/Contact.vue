@@ -112,9 +112,7 @@
     <div class="w-3"></div>
     <div>
       <p>
-        <a href="https://www.patreon.com/stemserver"
-          >Patreon</a
-        >
+        <a href="https://www.patreon.com/stemserver">Patreon</a>
       </p>
     </div>
   </div>
