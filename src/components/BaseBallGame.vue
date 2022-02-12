@@ -1,7 +1,7 @@
 <template>
   <div class="border-pretty">
     <h1>Baseball Game</h1>
-    <p>Made with love 💞</p>
+    <p>Made with love ❤</p>
     <div class="h-10"></div>
 
     <!-- create a list of items -->
@@ -44,12 +44,7 @@ import { BaseBallGame } from "baseball-game";
 
 const bb = new BaseBallGame(4);
 
-const attempts = ref([
-  {
-    description: `you bad`,
-    number: `1234`,
-  },
-]);
+const attempts = ref([]);
 
 function makeGuess(guess) {
   guess = guess.srcElement[0].value;
