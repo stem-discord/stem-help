@@ -28,6 +28,12 @@
     <router-link to="/christmastree" class="button">CHRISTMAS TREE</router-link>
     <router-link to="/poem" class="button">POEM</router-link>
 
+    <h1>Experimental project</h1>
+
+    <div class="h-2"></div>
+
+    <BaseBallGame />
+
     <div class="h-10"></div>
 
     <h1>Join the server</h1>
@@ -58,6 +64,10 @@ p {
   margin-bottom: 1rem;
 }
 </style>
+
+<script setup>
+import BaseBallGame from "@/components/BaseBallGame.vue";
+</script>
 
 <script>
 // @ is an alias to /src
