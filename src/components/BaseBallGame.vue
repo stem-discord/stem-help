@@ -18,8 +18,14 @@
     </ul>
     <form v-on:submit.prevent="makeGuess">
       <input
-        type="text"
+        type="number"
         v-model="guessText"
+        style="
+          border: 0;
+          outline: 0;
+          background: transparent;
+          border-bottom: 1px solid black;
+        "
         @input="
           (event) => {
             event.target.value = event.target.value.replace(/[^0-9]/g, '');
@@ -46,12 +52,23 @@ const bb = new BaseBallGame(4);
 
 const attempts = ref([]);
 
-function makeGuess(guess) {
-  guess = guess.srcElement[0].value;
+function makeGuess(e) {
+  const guess = e.srcElement[0].value;
 
-  console.log(guess);
+  if (guess.length < 4) {
+    alert(`Please enter a 4 digit number`);
+    return;
+  }
+
+  if (guess.length !== new Set(guess).size) {
+    alert(`Please enter a number with no duplicates`);
+    return;
+  }
 
   const desc = bb.describe(guess);
+
+  // Reset
+  e.srcElement[0].value = ``;
 
   attempts.value.push({
     description: desc,
