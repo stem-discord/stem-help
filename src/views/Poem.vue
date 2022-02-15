@@ -157,7 +157,7 @@ function shuffle(array) {
   return array;
 }
 
-async function poemData(poems) {
+async function poemData(poems, doShuffle = true) {
   await Promise.all(
     Object.entries(poems).map(async ([k, v]) => {
       const { discriminator, username } = await fetch(
@@ -170,9 +170,10 @@ async function poemData(poems) {
   // shuffle order
   const keys = Object.keys(poems);
   const n = {};
-  shuffle(keys).forEach((k) => {
-    n[k] = poems[k];
-  });
+  doShuffle &&
+    shuffle(keys).forEach((k) => {
+      n[k] = poems[k];
+    });
 
   return n;
 }
@@ -209,7 +210,7 @@ export default {
           token: token.value,
         }),
       }).then(() => {
-        refresh.value();
+        refresh.value(false);
       });
     }
 
@@ -300,7 +301,7 @@ export default {
     };
   },
   created() {
-    this.refresh = () =>
+    this.refresh = (doShuffle = false) =>
       fetch(
         `${process.env.VUE_APP_API_URL}/v1/events/poem?token=${
           this.token || `n`
@@ -308,13 +309,13 @@ export default {
       )
         .then((res) => res.json())
         .then(async (data) => {
-          this.users = await poemData(data.poems);
+          this.users = await poemData(data.poems, doShuffle);
         })
         .catch((err) => {
           alert(`error fetching poem data`);
           console.log(err);
         });
-    this.refresh();
+    this.refresh(true);
   },
   mounted() {
     this.form = this.$refs.form;
