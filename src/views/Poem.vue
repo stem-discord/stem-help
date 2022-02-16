@@ -170,12 +170,14 @@ async function poemData(poems, doShuffle = true) {
   // shuffle order
   const keys = Object.keys(poems);
   const n = {};
-  doShuffle &&
+  if (doShuffle) {
     shuffle(keys).forEach((k) => {
       n[k] = poems[k];
     });
 
-  return n;
+    return n;
+  }
+  return poems;
 }
 
 export default {
