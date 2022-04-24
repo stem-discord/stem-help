@@ -79,6 +79,11 @@ const routes = [
     component: () => import(`../views/ComponentIntegrationTesting.vue`),
   },
   {
+    path: `/talent-show`,
+    name: `Talent Show Componenet`,
+    component: () => import(`../views/TalentShow.vue`),
+  },
+  {
     path: `/:catchAll(.*)`,
     name: `404`,
     component: () => import(`../views/404.vue`),
