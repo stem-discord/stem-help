@@ -36,7 +36,7 @@ jobs:
          clean: false
          
       - name: Set node version
-        run: alias node='n use auto'
+        run: n auto
 
       - name: yarn install --frozen-lockfile
         run: yarn install --frozen-lockfile
