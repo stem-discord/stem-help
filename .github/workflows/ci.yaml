@@ -34,6 +34,9 @@ jobs:
         with:
         # My poor raspberry pi needs to survive. No more disk stuff
          clean: false
+         
+      - name: Set node version
+        run: alias node='n use latest'
 
       - name: yarn install --frozen-lockfile
         run: yarn install --frozen-lockfile
