@@ -1,0 +1,54 @@
+name: CI
+on: ["push"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ steps.nvm.outputs.NVMRC }}
+
+      - name: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
+      
+      - name: try building
+        run: npm run build
+      
+  sandbox-deploy:
+    needs: build
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/nuxt3-hot'
+    steps:
+      - name: Clean Git Repository
+        run:
+          git clean -X -n --exclude="!node_modules" &&
+          git reset --hard HEAD
+
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+        with:
+        # My poor raspberry pi needs to survive. No more disk stuff
+         clean: false
+
+      - name: yarn install --frozen-lockfile if npm ls errors
+        run: yarn list || yarn install --frozen-lockfile
+
+      - run: npm run build
+
+      - run: " > .env"
+      - run: echo "CORS=true" > .env
+      - run: echo "MONGODB_URL=mongodb://127.0.0.1:27017/stem-backend-db" >> .env
+      - run: echo "DISCORD_BOT_TOKEN=${{ secrets.SANDBOX_DISCORD_BOT_TOKEN }}" >> .env
+      - run: echo "STEM_INFORMATION_URL=mongodb://127.0.0.1:27017/information" >> .env
+      - run: echo "CONNECTIONS=\"mongo,discordgql,stem,discord\"" >> .env
+
+      - run: " > .discordbot.env"
+      - run: echo "DISCORD_BOT_TOKEN=${{ secrets.SANDBOX_DISCORD_BOT_TOKEN }}" >> .discordbot.env
+      - run: echo "APPLICATION_ENV=.discordbot" >> .discordbot.env
+      - run: echo "MONGODB_URL=mongodb://127.0.0.1:27017/discord-api-server" >> .discordbot.env
+      - run: pm2 restart ecosystem.config.json
+

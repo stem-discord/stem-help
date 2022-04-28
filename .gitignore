@@ -1,0 +1,25 @@
+# Dev files
+?.*
+
+# Node related stuff
+node_modules
+
+# Log files
+*.log*
+
+# Nuxt related
+.nuxt
+.nitro
+
+# Cache
+.cache
+
+# Dist
+.output
+
+# Env files
+.env
+
+# Cypress
+cypress/videos
+cypress/screenshots

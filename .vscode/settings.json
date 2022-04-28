@@ -1,0 +1,48 @@
+{
+  "files.eol": "\n",
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "HookyQR.beautify",
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "files.associations": {
+    "*.scss": "postcss",
+    "*.vue": "vue"
+  },
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": true
+  // },
+  "files.exclude": {
+    "node_modules/": false,
+    ".git/": true
+    // // "database/": true,
+    // // ".husky/": true,
+    // "LICENSE": true,
+    // "package-lock.json": true,
+    // ".gitattributes": true,
+    // ".eslintignore": true,
+    // "tests": true,
+    // "babel.config.js": false,
+    // "CONTRIBUTING.md": true,
+    // "README.md": false,
+    // ".browserslistrc": true,
+    // "dist": true,
+    // ".stylelintrc.js": true,
+    // ".prettierrc.js": true,
+    // ".nvmrc": true,
+    // "postcss.config.js": true,
+    // "tailwind.config.js": true,
+    // "tsconfig.json": false,
+  }
+}

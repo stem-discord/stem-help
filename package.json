@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "test:cypress": "cypress run",
+    "dev:cypress": "cypress run --headed --no-exit"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^9.0.0",
+    "autoprefixer": "^10.4.5",
+    "browserslist": "^4.20.3",
+    "cross-env": "^7.0.3",
+    "cypress": "^9.5.4",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-nuxt": "^3.2.0",
+    "mock-aws-s3": "^4.0.2",
+    "nuxt": "npm:nuxt3@latest",
+    "postcss": "^8.4.12",
+    "prettier": "^2.6.2",
+    "sass": "^1.50.1",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.1.8",
+    "dayjs": "^1.11.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nuxi": "^3.0.0-rc.1",
+    "ohmyfetch": "^0.4.15",
+    "pinia": "^2.0.13",
+    "vuetify": "3.0.0-alpha.12"
+  }
+}
