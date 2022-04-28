@@ -58,6 +58,7 @@
       </div>
     </v-card-text>
   </v-card>
+  <div class="h-2"></div>
 </template>
 
 <script lang="ts" setup>
@@ -123,5 +124,11 @@ const info = {
   width: 420px;
   height: 220px;
   background-size: cover;
+}
+</style>
+
+<style>
+body {
+  width: fit-content;
 }
 </style>
