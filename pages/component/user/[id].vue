@@ -1,64 +1,66 @@
 <template>
-  <v-card v-if="!pending" class="rounded-0 card">
-    <v-card-title>
-      <img
-        class="h-7 rounded-full"
-        src="https://cdn.discordapp.com/attachments/839399426643591188/968933773729234974/unknown.png"
-      />
-      <div class="w-full pl-3">
-        <h1>STEM University</h1>
-        <div
-          class="w-full h-2 border-black border-opacity-20"
-          style="border-bottom-width: 1px"
-        ></div>
-      </div>
-    </v-card-title>
-    <v-card-text class="opacity-100 flex">
-      <v-avatar class="rounded-lg flex-shrink-0" size="60">
-        <img :src="data?.stem?.displayAvatarURL || ''" />
-      </v-avatar>
-      <div class="flex-column pl-4 w-full">
-        <h3>{{ data?.stem?.displayName + '#' + data?.discriminator }}</h3>
-        <div
-          class="w-full h-1 border-black border-opacity-50"
-          style="border-bottom-width: 1px"
-        ></div>
-        <ul :if="data?.createdTimestamp">
-          <li
-            v-for="(item, idx) in [
-              [`Status`, info.status],
-              [`Joined`, info.joined],
-              [`Behavior`, info.behavior],
-              [`Messages sent`, info.messagesSent],
-            ]"
-            :key="idx"
-            class="flex"
-          >
-            <span>{{ item[0] }}</span>
-            <span class="ml-auto">{{ unref(item[1] as string) }}</span>
-          </li>
-          <li class="flex">
-            <span>Performance</span>
-            <span class="flex ml-auto">
-              <img
-                v-for="i in Array.from({ length: 4 }).fill(0)"
-                :key="(i as number)"
-                class="h-8 w-8"
-                src="https://media.discordapp.net/attachments/951131768478650368/966900470792740944/starsss.png"
-              />
-              <img
-                v-for="i in Array.from({ length: 1 }).fill(0)"
-                :key="(i as number)"
-                class="h-8 w-8"
-                src="https://media.discordapp.net/attachments/839399426643591188/969176637193216070/star_1.png"
-              />
-            </span>
-          </li>
-        </ul>
-      </div>
-    </v-card-text>
-  </v-card>
-  <div class="h-2"></div>
+  <div>
+    <v-card v-if="!pending" class="rounded-0 card">
+      <v-card-title>
+        <img
+          class="h-7 rounded-full"
+          src="https://cdn.discordapp.com/attachments/839399426643591188/968933773729234974/unknown.png"
+        />
+        <div class="w-full pl-3">
+          <h1>STEM University</h1>
+          <div
+            class="w-full h-2 border-black border-opacity-20"
+            style="border-bottom-width: 1px"
+          ></div>
+        </div>
+      </v-card-title>
+      <v-card-text class="opacity-100 flex">
+        <v-avatar class="rounded-lg flex-shrink-0" size="60">
+          <img :src="data?.stem?.displayAvatarURL || ''" />
+        </v-avatar>
+        <div class="flex-column pl-4 w-full">
+          <h3>{{ data?.stem?.displayName + '#' + data?.discriminator }}</h3>
+          <div
+            class="w-full h-1 border-black border-opacity-50"
+            style="border-bottom-width: 1px"
+          ></div>
+          <ul :if="data?.createdTimestamp">
+            <li
+              v-for="(item, idx) in [
+                [`Status`, info.status],
+                [`Joined`, info.joined],
+                [`Behavior`, info.behavior],
+                [`Messages sent`, info.messagesSent],
+              ]"
+              :key="idx"
+              class="flex"
+            >
+              <span>{{ item[0] }}</span>
+              <span class="ml-auto">{{ unref(item[1] as string) }}</span>
+            </li>
+            <li class="flex">
+              <span>Performance</span>
+              <span class="flex ml-auto">
+                <img
+                  v-for="i in Array.from({ length: 4 }).fill(0)"
+                  :key="(i as number)"
+                  class="h-8 w-8"
+                  src="https://media.discordapp.net/attachments/951131768478650368/966900470792740944/starsss.png"
+                />
+                <img
+                  v-for="i in Array.from({ length: 1 }).fill(0)"
+                  :key="(i as number)"
+                  class="h-8 w-8"
+                  src="https://media.discordapp.net/attachments/839399426643591188/969176637193216070/star_1.png"
+                />
+              </span>
+            </li>
+          </ul>
+        </div>
+      </v-card-text>
+    </v-card>
+    <div class="h-2"></div>
+  </div>
 </template>
 
 <script lang="ts" setup>
