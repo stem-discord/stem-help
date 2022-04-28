@@ -50,7 +50,7 @@
                 v-for="i in Array.from({ length: 1 }).fill(0)"
                 :key="(i as number)"
                 class="h-8 w-8"
-                src="https://media.discordapp.net/attachments/951131768478650368/969160319207370802/star.png?width=942&height=905"
+                src="https://media.discordapp.net/attachments/839399426643591188/969176637193216070/star_1.png"
               />
             </span>
           </li>
