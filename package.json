@@ -4,7 +4,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "cross-env NODE_OPTIONS=\"--max_old_space_size=8000\" nuxt preview",
     "test:cypress": "cypress run",
     "dev:cypress": "cypress run --headed --no-exit"
   },

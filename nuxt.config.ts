@@ -19,6 +19,10 @@ export default defineNuxtConfig({
     `~/assets/css/tailwind.css`,
   ],
 
+  experimental: {
+    viteNode: true,
+  },
+
   nitro: {
     preset: `node-server`,
   },
@@ -33,7 +37,7 @@ export default defineNuxtConfig({
     },
   },
 
-  ssr: true,
+  ssr: false,
 
   build: {
     transpile: [`vuetify`],

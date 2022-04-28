@@ -20,6 +20,7 @@
     "*.scss": "postcss",
     "*.vue": "vue"
   },
+  "liveServer.settings.root": "./.output/public",
   // "editor.codeActionsOnSave": {
   //   "source.fixAll.eslint": true
   // },

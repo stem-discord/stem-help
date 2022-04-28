@@ -27,6 +27,7 @@ jobs:
         run:
           git clean -X -n --exclude="!node_modules" &&
           git reset --hard HEAD
+        continue-on-error: true
 
       - name: Check out Git repository
         uses: actions/checkout@v2
@@ -34,21 +35,9 @@ jobs:
         # My poor raspberry pi needs to survive. No more disk stuff
          clean: false
 
-      - name: yarn install --frozen-lockfile if npm ls errors
-        run: yarn list || yarn install --frozen-lockfile
+      - name: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
-      - run: npm run build
-
-      - run: " > .env"
-      - run: echo "CORS=true" > .env
-      - run: echo "MONGODB_URL=mongodb://127.0.0.1:27017/stem-backend-db" >> .env
-      - run: echo "DISCORD_BOT_TOKEN=${{ secrets.SANDBOX_DISCORD_BOT_TOKEN }}" >> .env
-      - run: echo "STEM_INFORMATION_URL=mongodb://127.0.0.1:27017/information" >> .env
-      - run: echo "CONNECTIONS=\"mongo,discordgql,stem,discord\"" >> .env
-
-      - run: " > .discordbot.env"
-      - run: echo "DISCORD_BOT_TOKEN=${{ secrets.SANDBOX_DISCORD_BOT_TOKEN }}" >> .discordbot.env
-      - run: echo "APPLICATION_ENV=.discordbot" >> .discordbot.env
-      - run: echo "MONGODB_URL=mongodb://127.0.0.1:27017/discord-api-server" >> .discordbot.env
-      - run: pm2 restart ecosystem.config.json
+      - name: generate static files
+        run: npm run generate
 

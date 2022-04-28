@@ -1,9 +1,9 @@
 import { defineNuxtPlugin } from '#app';
 
-import dayjs from 'dayjs';
-import advancedFormat from 'dayjs/plugin/advancedFormat';
+import dayjs, { extend } from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat.js';
 
-dayjs.extend(advancedFormat);
+extend(advancedFormat);
 
 export default defineNuxtPlugin((_nuxtApp) => {
   const config = useRuntimeConfig().public;
