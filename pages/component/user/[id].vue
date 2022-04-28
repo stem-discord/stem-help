@@ -128,7 +128,13 @@ const info = {
 </style>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap');
+
 body {
   width: fit-content;
+}
+
+* {
+  font-family: 'Titillium Web', sans-serif;
 }
 </style>
