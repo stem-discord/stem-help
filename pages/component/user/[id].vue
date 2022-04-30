@@ -67,6 +67,7 @@
 import { unref } from 'vue';
 import dayjs from 'dayjs';
 const { $formatDate } = useNuxtApp();
+const config = useRuntimeConfig();
 
 const route = useRoute();
 // const conf = useRuntimeConfig().public;
@@ -74,11 +75,11 @@ const route = useRoute();
 // $api();
 
 const { data, pending } = useFetch<{ [key: string]: any }>(
-  `https://apibeta.stem.help/v1/service/discordidlookup/${route.params.id}`
+  `${config.public.apiBase}/v1/service/discordidlookup/${route.params.id}`
 );
 
 const { data: dbData } = useFetch<{ [key: string]: any }>(
-  `https://apibeta.stem.help/v1/service/stem/stats/${route.params.id}`
+  `${config.public.apiBase}/v1/service/stem/stats/${route.params.id}`
 );
 
 const createdTime = computed(() => $formatDate(data.value?.createdAt));
@@ -86,6 +87,7 @@ const createdTime = computed(() => $formatDate(data.value?.createdAt));
 const info = {
   status: computed(() => {
     if (!data.value) return;
+    console.log(data.value);
     const joinedAt =
       (Date.now() - data.value.stem.joinedTimestamp) / (1000 * 60 * 60 * 24);
     if (joinedAt < 60) return `freshman`;

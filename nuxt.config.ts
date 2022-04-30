@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       date: {
         format: `Do MMM YYYY`,
       },
-      apiBase: `http://localhost:4000`,
+      apiBase: `https://apibeta.stem.help`,
       apiVersions: [`v1`],
     },
   },
