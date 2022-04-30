@@ -127,9 +127,7 @@ const info = {
   height: 220px;
   background-size: cover;
 }
-</style>
 
-<style>
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap');
 
 body {
