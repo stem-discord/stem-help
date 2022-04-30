@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="puppeteer-screenshot">
     <v-card v-if="!pending" class="rounded-0 card">
       <v-card-title>
         <img
@@ -87,7 +87,6 @@ const createdTime = computed(() => $formatDate(data.value?.createdAt));
 const info = {
   status: computed(() => {
     if (!data.value) return;
-    console.log(data.value);
     const joinedAt =
       (Date.now() - data.value.stem.joinedTimestamp) / (1000 * 60 * 60 * 24);
     if (joinedAt < 60) return `freshman`;
@@ -130,13 +129,8 @@ const info = {
   background-size: cover;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap');
-
-body {
-  width: fit-content;
-}
-
 * {
   font-family: 'Titillium Web', sans-serif;
+  font-weight: 600;
 }
 </style>
