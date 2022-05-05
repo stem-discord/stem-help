@@ -32,6 +32,6 @@
     "nuxi": "^3.0.0-rc.1",
     "ohmyfetch": "^0.4.15",
     "pinia": "^2.0.13",
-    "vuetify": "3.0.0-alpha.12"
+    "vuetify": "3.0.0-beta.1"
   }
 }
