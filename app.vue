@@ -27,7 +27,29 @@
 </template>
 
 <script setup>
-function login() {}
+const username = ref(``);
+const password = ref(``);
+
+function login() {
+  $fetch(`/v1/auth/login`, {
+    method: `POST`,
+    headers: {
+      'Content-Type': `application/json`,
+    },
+    body: JSON.stringify({
+      username: username.value,
+      password: password.value,
+    }),
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((data) => {
+        console.log(data);
+      });
+    } else {
+      alert(`login has failed. Status ${res.status}`);
+    }
+  });
+}
 </script>
 
 <style>
