@@ -48,7 +48,7 @@
           </div>
         </v-container>
         <label class="w-full p-2"
-          >I agree to not bitch about copyrights after submitting this
+          >I agree to not cry about copyrights after submitting this
           question</label
         >
         <input v-model="copyrightCheck" type="checkbox" />
@@ -105,7 +105,7 @@ const codeview = computed(() => {
 
 function submit(e) {
   if (!copyrightCheck.value) {
-    alert(`You must agree to not bitch about copyrights`);
+    alert(`You must agree to not be a crybaby about copyrights`);
     e.preventDefault();
     return;
   }
