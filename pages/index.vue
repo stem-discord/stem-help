@@ -1,3 +1,3 @@
 <template>
-  <TestPage />
+  <PotdGenerator></PotdGenerator>
 </template>
