@@ -2,16 +2,11 @@ import { defineNuxtPlugin } from '#app';
 import { createVuetify } from 'vuetify';
 
 // Import everything
-import { VCard, VCardText, VCardTitle, VAvatar } from 'vuetify/components';
+import * as components from 'vuetify/components';
 
 export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
-    components: {
-      VCard,
-      VCardText,
-      VCardTitle,
-      VAvatar,
-    },
+    components,
   });
   nuxtApp.vueApp.use(vuetify);
 });
