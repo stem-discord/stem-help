@@ -29,9 +29,10 @@
 <script setup>
 const username = ref(``);
 const password = ref(``);
+const config = useRuntimeConfig();
 
 function login() {
-  $fetch(`/v1/auth/login`, {
+  $fetch(`${config.public.apiBase}/v1/auth/login`, {
     method: `POST`,
     headers: {
       'Content-Type': `application/json`,
