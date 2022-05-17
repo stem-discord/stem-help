@@ -66,20 +66,20 @@
 <script lang="ts" setup>
 import { unref } from 'vue';
 import dayjs from 'dayjs';
-const { $formatDate } = useNuxtApp();
+
+import { DEV_OPTIONS } from '~/store/index.js';
+
+const { $formatDate, $apiBase } = useNuxtApp();
 const config = useRuntimeConfig();
 
 const route = useRoute();
-// const conf = useRuntimeConfig().public;
-
-// $api();
 
 const { data, pending } = useFetch<{ [key: string]: any }>(
-  `${config.public.apiBase}/v1/service/discordidlookup/${route.params.id}`
+  `${$apiBase()}/v1/service/discordidlookup/${route.params.id}`
 );
 
 const { data: dbData } = useFetch<{ [key: string]: any }>(
-  `${config.public.apiBase}/v1/service/stem/stats/${route.params.id}`
+  `${$apiBase()}/v1/service/stem/stats/${route.params.id}`
 );
 
 const createdTime = computed(() => $formatDate(data.value?.createdAt));
