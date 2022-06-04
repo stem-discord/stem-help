@@ -123,7 +123,7 @@ const info = {
 
 <style lang="scss" scoped>
 .card {
-  background-image: url('https://cdn.discordapp.com/attachments/839399426643591188/965853294159356004/unknown.png');
+  background-image: url('https://cdn.discordapp.com/attachments/887087924976422926/972977374788460574/duck.png');
   width: 420px;
   height: 220px;
   background-size: cover;
