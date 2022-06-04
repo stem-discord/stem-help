@@ -24,7 +24,7 @@
             class="w-full h-1 border-black border-opacity-50"
             style="border-bottom-width: 1px"
           ></div>
-          <ul :if="data?.createdTimestamp">
+          <ul v-if="data?.createdTimestamp">
             <li
               v-for="(item, idx) in [
                 [`Status`, info.status],
