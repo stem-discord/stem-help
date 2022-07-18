@@ -16,15 +16,15 @@
       </v-card-title>
       <v-card-text class="opacity-100 flex">
         <v-avatar class="rounded-lg flex-shrink-0" size="60">
-          <img :src="data?.stem?.displayAvatarURL || ''" />
+          <img :src="data?.displayAvatarURL || ''" />
         </v-avatar>
         <div class="flex-column pl-4 w-full">
-          <h3>{{ data?.stem?.displayName + '#' + data?.discriminator }}</h3>
+          <h3>{{ data?.tag }}</h3>
           <div
             class="w-full h-1 border-black border-opacity-50"
             style="border-bottom-width: 1px"
           ></div>
-          <ul v-if="data?.createdTimestamp">
+          <ul v-if="data?.tag">
             <li
               v-for="(item, idx) in [
                 [`Status`, info.status],
@@ -86,19 +86,21 @@ const createdTime = computed(() => $formatDate(data.value?.createdAt));
 
 const info = {
   status: computed(() => {
-    if (!data.value) return;
-    const joinedAt =
-      (Date.now() - data.value.stem.joinedTimestamp) / (1000 * 60 * 60 * 24);
-    if (joinedAt < 60) return `freshman`;
-    if (joinedAt >= 60 && joinedAt < 90) return `sophomore`;
-    if (joinedAt >= 90 && joinedAt < 120) return `junior`;
-    if (joinedAt >= 120) return `senior`;
+    return `Needs more development`;
+    // if (!data.value) return;
+    // const joinedAt =
+    //   (Date.now() - data.value.joinedTimestamp) / (1000 * 60 * 60 * 24);
+    // if (joinedAt < 60) return `freshman`;
+    // if (joinedAt >= 60 && joinedAt < 90) return `sophomore`;
+    // if (joinedAt >= 90 && joinedAt < 120) return `junior`;
+    // if (joinedAt >= 120) return `senior`;
   }),
   joined: computed(() => {
-    if (!data.value) return;
-    const now = dayjs();
-    const then = dayjs(data.value.stem.joinedTimestamp);
-    return `${now.diff(then, `days`)} days ago`;
+    return `Needs more development`;
+    // if (!data.value) return;
+    // const now = dayjs();
+    // const then = dayjs(data.value.stem.joinedTimestamp);
+    // return `${now.diff(then, `days`)} days ago`;
   }),
   behavior: computed(() => {
     // Honestly the code to calculate this is over everywhere friq it
